@@ -6,6 +6,10 @@ mysql_debconf_install:
   pkg.installed:
     - name: debconf
 
+mysql_debconf_utils:
+  pkg.installed:
+    - name: debconf-utils
+
 
 mysql_debconf_settings:
   debconf.set:
