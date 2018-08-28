@@ -1,4 +1,6 @@
-{% set mysql = salt['grains.filter_by']({
+{% import_yaml "mysql/defaults.yaml" as default_settings %}
+
+{% set os_map = salt['grains.filter_by']({
 
   'Debian': {
     'server': 'mysql-server',
@@ -17,4 +19,14 @@
     'python': 'MySQL-python',
   },
 
-})%}
+}, grain='os_family', merge=salt['pillar.get']('mysql')
+
+)%}
+
+{% do default_settings.mysql.update(os_map) %}
+
+{% set mysql = salt['pillar.get'](
+    'mysql',
+    default=default_settings.mysql,
+    merge=True)
+%}

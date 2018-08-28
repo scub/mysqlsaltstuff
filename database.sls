@@ -1,3 +1,5 @@
+{% from "mysql/map.jinja" import mysql with context %}
+
 {% for database, arg in salt['pillar.get']('mysql:database', {}).items() %}
 
 mysql_{{ database }}_db_create:

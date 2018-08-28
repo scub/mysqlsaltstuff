@@ -1,0 +1,7 @@
+mysql:
+  root:
+    name: root
+    password: temppass
+  database:
+    internal:
+      host: localhost
